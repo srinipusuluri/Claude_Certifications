@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Certification · Practice Exam Simulators</title>
+<meta name="description" content="Four full practice-exam simulator sets and study guides for the Claude Certification Program — Associate, Developer, and Architect tracks.">
+<meta name="theme-color" content="#14100d">
+
+<!-- Favicon: Claude-toned starburst, inline SVG (no external assets) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1310'/%3E%3Cg transform='translate(32 32)' fill='%23cc785c'%3E%3Cg id='b'%3E%3Cpath d='M0-21 4.2-4.2 21 0 4.2 4.2 0 21-4.2 4.2-21 0-4.2-4.2Z'/%3E%3C/g%3E%3Cg transform='rotate(45) scale(.62)' fill='%23e09b80'%3E%3Cpath d='M0-21 4.2-4.2 21 0 4.2 4.2 0 21-4.2 4.2-21 0-4.2-4.2Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1310'/%3E%3Cg transform='translate(32 32)' fill='%23cc785c'%3E%3Cpath d='M0-21 4.2-4.2 21 0 4.2 4.2 0 21-4.2 4.2-21 0-4.2-4.2Z'/%3E%3Cg transform='rotate(45) scale(.62)' fill='%23e09b80'%3E%3Cpath d='M0-21 4.2-4.2 21 0 4.2 4.2 0 21-4.2 4.2-21 0-4.2-4.2Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<style>
+  :root{
+    --clay:#cc785c;
+    --clay-lt:#e09b80;
+    --clay-dk:#a8532f;
+    --cream:#f7f4ef;
+    --ink:#1c1a17;
+    --plum:#3a2419;
+    --sand:#d9cfc2;
+    --glass:rgba(255,255,255,.07);
+    --glass-line:rgba(255,255,255,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    color:var(--cream);
+    background:#14100d;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- animated Claude-toned background ---------- */
+  .bg{position:fixed;inset:0;z-index:-2;background:
+      radial-gradient(1200px 800px at 12% 8%,  #4a2a1b 0%, transparent 60%),
+      radial-gradient(1000px 700px at 88% 12%, #6b3520 0%, transparent 58%),
+      radial-gradient(1100px 900px at 50% 100%,#2c1c14 0%, transparent 62%),
+      linear-gradient(160deg,#1a1310 0%, #241812 45%, #14100d 100%);}
+  .blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.5;z-index:-1;
+        will-change:transform;animation:drift 26s ease-in-out infinite alternate;}
+  .b1{width:520px;height:520px;background:var(--clay);top:-160px;left:-120px;}
+  .b2{width:440px;height:440px;background:#8c4a2f;top:18%;right:-140px;animation-delay:-8s;animation-duration:32s;}
+  .b3{width:600px;height:600px;background:#5e2f1e;bottom:-260px;left:28%;animation-delay:-16s;animation-duration:38s;}
+  @keyframes drift{
+    from{transform:translate3d(0,0,0) scale(1);}
+    to{transform:translate3d(60px,-50px,0) scale(1.18);}
+  }
+  .grain{position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* ---------- layout ---------- */
+  .wrap{max-width:1120px;margin:0 auto;padding:clamp(40px,7vw,92px) clamp(20px,5vw,40px) 40px;}
+
+  /* ---------- header ---------- */
+  header{text-align:center;margin-bottom:clamp(38px,6vw,64px);}
+  .badge{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:100px;
+    background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(10px);
+    font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--clay-lt);margin-bottom:26px;}
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--clay);
+    box-shadow:0 0 12px var(--clay);animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+
+  h1{font-size:clamp(34px,6.2vw,64px);line-height:1.06;letter-spacing:-.025em;font-weight:800;
+     margin-bottom:20px;}
+  h1 .grad{background:linear-gradient(105deg,var(--clay-lt) 0%,#f0b79c 40%,var(--clay) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{font-size:clamp(15px,2vw,18.5px);color:#cbbdae;max-width:660px;margin:0 auto 28px;}
+
+  .stats{display:flex;justify-content:center;gap:clamp(18px,4vw,44px);flex-wrap:wrap;
+    padding-top:22px;border-top:1px solid rgba(255,255,255,.09);max-width:620px;margin:0 auto;}
+  .stat{text-align:center}
+  .stat b{display:block;font-size:clamp(22px,3.4vw,30px);font-weight:800;color:var(--cream);
+    letter-spacing:-.02em;line-height:1.1;}
+  .stat span{font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:#a3907f;}
+
+  /* ---------- cards ---------- */
+  /* balanced 2 x 2 on desktop, single column on narrow screens */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,24px);}
+  @media (max-width:760px){ .grid{grid-template-columns:1fr;} }
+
+  .card{position:relative;display:flex;flex-direction:column;padding:28px 26px 24px;
+    border-radius:20px;background:var(--glass);border:1px solid var(--glass-line);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    color:inherit;overflow:hidden;
+    transition:transform .32s cubic-bezier(.22,1,.36,1), border-color .32s, box-shadow .32s, background .32s;}
+  /* decorative gradient border — MUST NOT capture clicks (an opacity:0 overlay
+     still hit-tests, and being positioned it paints above the in-flow buttons) */
+  .card::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+    pointer-events:none;
+    background:linear-gradient(140deg,var(--clay),transparent 45%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .32s;}
+  .card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);
+    border-color:rgba(224,155,128,.45);box-shadow:0 22px 50px -12px rgba(0,0,0,.6),0 0 0 1px rgba(204,120,92,.16);}
+  .card:hover::before{opacity:1;}
+
+  .code{display:inline-block;align-self:flex-start;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:11.5px;font-weight:700;letter-spacing:.09em;padding:5px 11px;border-radius:7px;
+    background:rgba(204,120,92,.18);border:1px solid rgba(224,155,128,.3);color:var(--clay-lt);
+    margin-bottom:16px;}
+  .card h2{font-size:20.5px;font-weight:700;letter-spacing:-.015em;line-height:1.25;margin-bottom:6px;}
+  .track{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--clay-lt);margin-bottom:14px;}
+  .card p{font-size:14.2px;color:#c2b3a4;flex:1;margin-bottom:20px;}
+
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .chip{font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:100px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);color:#d6c8ba;}
+
+  /* ---------- action buttons: primary spans, two guide buttons below ---------- */
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.1);
+    position:relative;z-index:2;}   /* keep buttons above any card decoration */
+  .actions .btn.primary{grid-column:1 / -1;}
+  .guide-label{grid-column:1 / -1;font-size:10.5px;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;color:#8f7c6c;margin:4px 0 -2px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 14px;border-radius:11px;font-size:13.5px;font-weight:650;letter-spacing:.01em;
+    text-decoration:none;cursor:pointer;white-space:nowrap;
+    transition:transform .22s cubic-bezier(.22,1,.36,1),background .25s,border-color .25s,box-shadow .25s,color .25s;}
+  .btn svg{width:15px;height:15px;stroke-width:2.1;fill:none;stroke-linecap:round;stroke-linejoin:round;
+    transition:transform .25s cubic-bezier(.22,1,.36,1);}
+
+  .btn.primary{background:linear-gradient(135deg,var(--clay) 0%,var(--clay-dk) 100%);
+    color:#fff8f3;border:1px solid rgba(240,183,156,.42);
+    box-shadow:0 6px 18px -6px rgba(204,120,92,.55);}
+  .btn.primary svg{stroke:#fff8f3;}
+  .btn.primary:hover{transform:translateY(-2px);
+    box-shadow:0 12px 26px -8px rgba(204,120,92,.75),0 0 0 1px rgba(240,183,156,.35);
+    background:linear-gradient(135deg,#d9866a 0%,#b85c38 100%);}
+  .btn.primary:hover svg{transform:translateX(3px);}
+
+  .btn.ghost{background:rgba(255,255,255,.07);color:#e6d9cc;
+    border:1px solid rgba(255,255,255,.16);font-size:13px;}
+  .btn.ghost svg{stroke:#e6d9cc;}
+  .btn.ghost:hover{transform:translateY(-2px);background:rgba(255,255,255,.13);
+    border-color:rgba(224,155,128,.5);color:#fff;}
+  .btn.ghost:hover svg{stroke:var(--clay-lt);}
+  /* open = nudge out; download = nudge down */
+  .btn.ghost.open:hover svg{transform:translate(2px,-2px);}
+  .btn.ghost.dl:hover svg{transform:translateY(2px);}
+
+  .btn:focus-visible{outline:2px solid var(--clay-lt);outline-offset:3px;}
+  @media (max-width:400px){ .actions{grid-template-columns:1fr;} }
+
+  /* ---------- footer ---------- */
+  footer{margin-top:clamp(48px,7vw,80px);padding-top:26px;border-top:1px solid rgba(255,255,255,.09);
+    text-align:center;font-size:13px;color:#9c8878;line-height:1.75;}
+  footer .disc{color:#7d6c5e;font-size:12.2px;margin-top:8px;}
+  footer a{color:var(--clay-lt);text-decoration:none;border-bottom:1px solid rgba(224,155,128,.3);}
+  footer a:hover{color:#f0b79c;}
+
+  @media (prefers-reduced-motion:reduce){
+    .blob,.badge .dot{animation:none;}
+    .card{transition:none;}
+    html{scroll-behavior:auto;}
+  }
+  @media (max-width:520px){
+    .stats{gap:20px}
+    .card{padding:24px 20px 20px}
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+<div class="grain"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="badge"><span class="dot"></span>Claude Certification Program</div>
+    <h1>Practice Exam <span class="grad">Simulators</span></h1>
+    <p class="sub">Four complete simulator sets across the Associate, Developer, and Architect tracks —
+    each with four independent full-length exams, original questions, and a written rationale for every
+    answer. No question repeats within a set.</p>
+    <div class="stats">
+      <div class="stat"><b>4</b><span>Certifications</span></div>
+      <div class="stat"><b>16</b><span>Full exams</span></div>
+      <div class="stat"><b>944</b><span>Questions</span></div>
+      <div class="stat"><b>27</b><span>Domains</span></div>
+    </div>
+  </header>
+
+  <main class="grid">
+
+    <!-- CCAO-F -->
+    <article class="card">
+      <span class="code">CCAO-F</span>
+      <h2>Claude Certified Associate</h2>
+      <div class="track">Foundations</div>
+      <p>For professionals using Claude as a productivity tool. Prompting, output evaluation, product and
+      model selection, workflow integration, configuration, and responsible use.</p>
+      <div class="meta">
+        <span class="chip">4 × 60 items</span>
+        <span class="chip">7 domains</span>
+        <span class="chip">120 min</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="https://srinipusuluri.github.io/CCAO-F-SET1/" target="_blank" rel="noopener">
+          Practice exam <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="guide-label">Study guide</div>
+        <a class="btn ghost open" href="https://github.com/srinipusuluri/CCAO-F-SET1/blob/main/CCA-Foundations-Module-Workbook.pdf" target="_blank" rel="noopener">
+          Open <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+        </a>
+        <a class="btn ghost dl" href="https://github.com/srinipusuluri/CCAO-F-SET1/raw/main/CCA-Foundations-Module-Workbook.pdf" download rel="noopener">
+          Download <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- CCDV-F -->
+    <article class="card">
+      <span class="code">CCDV-F</span>
+      <h2>Claude Certified Developer</h2>
+      <div class="track">Foundations</div>
+      <p>Build, integrate, and ship production-grade Claude applications — API mechanics, agents, tools,
+      MCP servers, cost optimization, and secure-by-design guardrails.</p>
+      <div class="meta">
+        <span class="chip">4 × 53 items</span>
+        <span class="chip">8 domains</span>
+        <span class="chip">120 min</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="https://srinipusuluri.github.io/CCDV-F-SET1/" target="_blank" rel="noopener">
+          Practice exam <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="guide-label">Study guide</div>
+        <a class="btn ghost open" href="https://github.com/srinipusuluri/CCDV-F-SET1/blob/main/CCDV-F-Developer-Workbook.pdf" target="_blank" rel="noopener">
+          Open <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+        </a>
+        <a class="btn ghost dl" href="https://github.com/srinipusuluri/CCDV-F-SET1/raw/main/CCDV-F-Developer-Workbook.pdf" download rel="noopener">
+          Download <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- CCAR-F -->
+    <article class="card">
+      <span class="code">CCAR-F</span>
+      <h2>Claude Certified Architect</h2>
+      <div class="track">Foundations</div>
+      <p>Production-grade architectural judgment: agentic architecture and orchestration, tool design and
+      MCP integration, Claude Code configuration, structured output, and context management.</p>
+      <div class="meta">
+        <span class="chip">4 × 60 items</span>
+        <span class="chip">5 domains</span>
+        <span class="chip">Scenario-based</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="https://srinipusuluri.github.io/CCAR-F-SET1-/" target="_blank" rel="noopener">
+          Practice exam <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="guide-label">Study guide</div>
+        <a class="btn ghost open" href="https://github.com/srinipusuluri/CCAR-F-SET1-/blob/main/CCAR-F-Architect-Workbook.pdf" target="_blank" rel="noopener">
+          Open <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+        </a>
+        <a class="btn ghost dl" href="https://github.com/srinipusuluri/CCAR-F-SET1-/raw/main/CCAR-F-Architect-Workbook.pdf" download rel="noopener">
+          Download <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- CCAR-P -->
+    <article class="card">
+      <span class="code">CCAR-P</span>
+      <h2>Claude Certified Architect</h2>
+      <div class="track">Professional</div>
+      <p>Solution architecture, RAG and integration, evaluation and testing, governance and risk, and
+      enterprise lifecycle management — for senior architects and technical leads.</p>
+      <div class="meta">
+        <span class="chip">4 × 63 items</span>
+        <span class="chip">7 domains</span>
+        <span class="chip">120 min</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="https://srinipusuluri.github.io/CCAR-P-SET1/" target="_blank" rel="noopener">
+          Practice exam <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="guide-label">Study guide</div>
+        <a class="btn ghost open" href="https://github.com/srinipusuluri/CCAR-P-SET1/blob/main/CCAR-P-Practitioner-Workbook.pdf" target="_blank" rel="noopener">
+          Open <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+        </a>
+        <a class="btn ghost dl" href="https://github.com/srinipusuluri/CCAR-P-SET1/raw/main/CCAR-P-Practitioner-Workbook.pdf" download rel="noopener">
+          Download <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    Prepared by <strong>Srini Pusuluri</strong>
+    <div class="disc">Unofficial study aid · Not affiliated with or endorsed by Anthropic ·
+    All questions are original. Verify current exam format, weights, and logistics with Anthropic before registering.</div>
+  </footer>
+
+</div>
+</body>
+</html>
