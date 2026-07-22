@@ -72,6 +72,11 @@
   h1 .grad{background:linear-gradient(105deg,var(--clay-lt) 0%,#f0b79c 40%,var(--clay) 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   .sub{font-size:clamp(15px,2vw,18.5px);color:#cbbdae;max-width:660px;margin:0 auto 28px;}
+  .refs{margin:14px auto 0;}
+  .refs a{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;
+    color:var(--clay-lt);text-decoration:none;padding:6px 14px;border-radius:100px;
+    border:1px solid rgba(224,155,128,.35);background:rgba(224,155,128,.08);transition:.2s;}
+  .refs a:hover{color:#f0b79c;border-color:rgba(224,155,128,.6);background:rgba(224,155,128,.15);}
 
   .stats{display:flex;justify-content:center;gap:clamp(18px,4vw,44px);flex-wrap:wrap;
     padding-top:22px;border-top:1px solid rgba(255,255,255,.09);max-width:620px;margin:0 auto;}
@@ -179,6 +184,7 @@
 
   <header>
     <div class="badge"><span class="dot"></span>Claude Certification Program</div>
+    <p class="refs"><a href="https://srinipusuluri.github.io/claude-learning-portal/" target="_blank" rel="noopener">Study references →</a></p>
     <h1>Practice Exam <span class="grad">Simulators</span></h1>
     <p class="sub">Four complete simulator sets across the Associate, Developer, and Architect tracks —
     each with four independent full-length exams, original questions, and a written rationale for every
